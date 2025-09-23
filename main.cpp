@@ -75,6 +75,9 @@ void createArbrePostfix(noeud** racine, int prof)
     }
     
 }
+
+//AFFICHAGE DES ARBRES
+
 void affichePostFix(noeud* racine)
 {
     if (racine == NULL) return;
@@ -178,6 +181,52 @@ int compterFeuille(noeud* racine)
 }
 
 
+//RECHERCHES DES CARACTERISTIQUES
+
+int compterNoeuds(noeud* racine)
+{
+    if (racine != NULL)
+    {
+                return 1 + compterNoeuds(racine->gauche) + compterNoeuds(racine->droite);
+    }
+    return 0;
+}
+
+int compterNoeudsInterne(noeud* racine)
+{
+    if (racine == NULL) return 0;
+    if (racine->gauche == NULL && racine->droite == NULL) return 0;
+    return 1 + compterNoeudsInterne(racine->gauche) + compterNoeudsInterne(racine->droite);
+}
+
+int profondeur(noeud* racine)
+{
+    if (racine == NULL) return 0;
+    if (racine->gauche == NULL && racine->droite == NULL) return 1;
+    int courant = profondeur(racine->gauche);
+    int courant1 = profondeur(racine->droite);
+    if (courant > courant1)
+    {
+        return 1 + courant;
+    }
+    return 1 + courant1;
+}
+
+int combienProf(noeud* racine, int P)
+{
+    if (racine != NULL & P == 0) return 1;
+    return combienProf(racine->gauche, P - 1) + combienProf(racine->droite, P - 1);
+}
+
+
+
+
+
+
+
+
+
+
 int main(int argc, const char * argv[]) {
     int hauteur;
     
@@ -192,8 +241,13 @@ createArbrePrefix(&newNoeud, hauteur);
     bool result = rechercheValeurPrefix(newNoeud, 5);
     cout << " le nombre est il dans l'arbre ? " << result << endl;
     cout << endl;
-    int result1 = compterFeuille(newNoeud);
-    cout << " nombre de feuille dans l'arbre : " << result1 << endl;
+    afficheValeurPrefix(newNoeud, 1);
+    int result4 = profondeur(newNoeud);
+    int result3 = compterNoeudsInterne(newNoeud);
+    int result2 = compterFeuille(newNoeud);
+    int result1 = combienProf(newNoeud, 1);
+    
+    cout << " nombre de noeuds dans l'arbre : " << result1 << endl;
     //afficheValeurPrefix(newNoeud, 5);
     
     
