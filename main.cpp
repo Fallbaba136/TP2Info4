@@ -242,9 +242,9 @@ createArbrePrefix(&newNoeud, hauteur);
     cout << " le nombre est il dans l'arbre ? " << result << endl;
     cout << endl;
     afficheValeurPrefix(newNoeud, 1);
-    int result4 = profondeur(newNoeud);
-    int result3 = compterNoeudsInterne(newNoeud);
-    int result2 = compterFeuille(newNoeud);
+    //int result4 = profondeur(newNoeud);
+    //int result3 = compterNoeudsInterne(newNoeud);
+    //int result2 = compterFeuille(newNoeud);
     int result1 = combienProf(newNoeud, 1);
     
     cout << " nombre de noeuds dans l'arbre : " << result1 << endl;
